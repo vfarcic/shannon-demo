@@ -41,10 +41,16 @@ def "main setup" [] {
         git clone https://github.com/vfarcic/dot-ai-ui dot-ai-ui
     }
 
+    # Write KUBECONFIG (and any future env vars) to .env so the user can point
+    # their own shell at THIS cluster without touching their real ~/.kube/config.
+    $"export KUBECONFIG=(kubeconfig)\n" | save --force .env
+
     print ""
     print "Target ready."
     print "  UI (browser):  http://dot-ai-ui.127.0.0.1.nip.io:8080   (login: Token tab -> shannon-demo-ui-token)"
-    print $"  KUBECONFIG=(kubeconfig)"
+    print ""
+    print "To use kubectl against the target from your shell:"
+    print "  source .env"
 }
 
 # Run Shannon against the target.
@@ -65,10 +71,14 @@ def "main run" [] {
 
 # Tear everything down.
 def "main destroy" [] {
-    kind delete cluster --name $CLUSTER
+    # Scope KUBECONFIG to our local file so `kind delete` updates THAT, and never
+    # reaches for (or trips over) the user's real ~/.kube/config.
+    $env.KUBECONFIG = (kubeconfig)
+
+    kind delete cluster --name $CLUSTER --kubeconfig (kubeconfig)
     # system rm: handles read-only git objects in the cloned source that
     # nushell's `rm --force` refuses to delete.
-    ^rm -rf dot-ai-ui kubeconfig.yaml
+    ^rm -rf dot-ai-ui kubeconfig.yaml .env
 }
 
 def main [] {

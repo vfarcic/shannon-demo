@@ -18,6 +18,8 @@ devbox shell          # brings in all the tools
 ./dot.nu destroy      # tear it all down
 ```
 
+Everything is scoped to a local `kubeconfig.yaml` in this directory — the scripts never touch your real `~/.kube/config`. `setup` also writes a `.env` pointing `KUBECONFIG` at that file; `source .env` if you want to poke at the target cluster with your own `kubectl`.
+
 Open the UI at http://dot-ai-ui.127.0.0.1.nip.io:8080 and log in via the **Token** tab with `shannon-demo-ui-token`.
 
 ## The API key
