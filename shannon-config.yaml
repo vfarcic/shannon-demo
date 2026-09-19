@@ -1,0 +1,31 @@
+# Shannon config for the disposable dot-ai-ui target (bearer-token auth).
+# Target reachable from Shannon's worker container at host.docker.internal:8080.
+
+exploit: "true"                 # full run: prove vulns with real PoCs ("false" = cheap analysis-only)
+agentic_sast:
+  enabled: "true"               # code analysis feeds the exploitation phase
+
+authentication:
+  login_type: form
+  login_url: "http://host.docker.internal:8080/"
+  credentials:
+    username: "shannon"         # unused by token login; kept for schema
+    password: "shannon-demo-ui-token"   # the UI bearer token, typed into the Token field
+  login_flow:
+    - "On the login page, click the 'Token' tab"
+    - "Type $password into the token input field (a password field for the bearer token)"
+    - "Click the 'Sign In' button"
+  success_condition:
+    type: url_contains
+    value: "/"
+
+rules:
+  focus:
+    - description: "Emphasize the API surface behind the BFF (proxy handlers, tools/operate|remediate|recommend)"
+      type: url_path
+      value: "/api"
+
+rules_of_engagement: |
+  - Disposable local test cluster; full exploitation is authorized.
+  - Throttle to under 5 requests/second per endpoint; back off 60s on any 429.
+  - No credential brute-force; cap login attempts at 5 per account.

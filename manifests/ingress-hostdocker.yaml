@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: { name: dot-ai-ui-hostdocker, namespace: dot-ai }
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: host.docker.internal
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend: { service: { name: dot-ai-ui, port: { number: 3000 } } }

@@ -1,0 +1,40 @@
+# Disposable Shannon target — dot-ai-stack on kind. No external LLM key.
+# Embeddings served locally by in-cluster Ollama (nomic-embed-text, arch-portable).
+# Tokens are FIXED demo values on purpose: this target is local and disposable,
+# so there is no real secret here.
+dot-ai:
+  ai:
+    provider: anthropic
+  secrets:
+    auth:
+      token: "shannon-demo-internal-token"
+    anthropic:
+      apiKey: "sk-ant-DUMMY-throwaway-not-a-real-key"
+    customEmbeddings:
+      apiKey: "ollama-no-key-required"
+  localEmbeddings:
+    enabled: false
+  extraEnv:
+    - { name: CUSTOM_EMBEDDINGS_BASE_URL, value: "http://ollama.dot-ai.svc.cluster.local:11434/v1" }
+    - { name: EMBEDDINGS_MODEL,           value: "nomic-embed-text" }
+    - { name: EMBEDDINGS_DIMENSIONS,      value: "768" }
+  ingress:
+    enabled: true
+  webUI:
+    baseUrl: "http://dot-ai-ui.127.0.0.1.nip.io:8080"
+dot-ai-ui:
+  enabled: true
+  dotAi:
+    url: "http://dot-ai:3456"
+    auth:
+      token: "shannon-demo-internal-token"
+  uiAuth:
+    token: "shannon-demo-ui-token"
+  ingress:
+    enabled: true
+dot-ai-controller:
+  enabled: true
+resourceSync:
+  enabled: true
+capabilityScan:
+  enabled: true

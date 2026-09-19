@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
+  "packages": [
+    "nushell@0.112.2",
+    "kind@0.31.0",
+    "kubectl@1.36.0",
+    "kubernetes-helm@3.20.2",
+    "vals@0.44.0",
+    "git@2.53.0",
+    "jq@1.8.1",
+    "yq-go@4.53.2",
+    "nodejs@22"
+  ],
+  "shell": {
+    "init_hook": [
+      "if [ -n \"$USE_VALS\" ]; then eval \"$(vals env -export -f .env.vals.yaml)\"; fi"
+    ]
+  }
+}
