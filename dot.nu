@@ -66,8 +66,9 @@ def "main run" [] {
 # Tear everything down.
 def "main destroy" [] {
     kind delete cluster --name $CLUSTER
-    rm --recursive --force dot-ai-ui
-    rm --force kubeconfig.yaml
+    # system rm: handles read-only git objects in the cloned source that
+    # nushell's `rm --force` refuses to delete.
+    ^rm -rf dot-ai-ui kubeconfig.yaml
 }
 
 def main [] {

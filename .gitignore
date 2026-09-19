@@ -1,4 +1,6 @@
 kubeconfig*.yaml
+dot-ai-ui/
+.devbox/
 *.key
 *-key.txt
 .env
