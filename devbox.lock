@@ -77,44 +77,6 @@
       "last_modified": "2026-08-22T02:12:10Z",
       "resolved": "github:NixOS/nixpkgs/a831408e6378bc02ebf8cc09b52c96ca86f6bab4?lastModified=1787364730"
     },
-    "glow@3.0.0": {
-      "last_modified": "2026-08-27T07:16:00Z",
-      "resolved": "github:NixOS/nixpkgs/c27cdad491a991b11ed731760aa2ef8db0cb0410#glow",
-      "source": "devbox-search",
-      "version": "3.0.0",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/2f9mb9pn9klcs65cpclvs4ll4qr5dz20-glow-3.0.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/2f9mb9pn9klcs65cpclvs4ll4qr5dz20-glow-3.0.0"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/jnvk26llimn8yybwldlmv24iawvawhhb-glow-3.0.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/jnvk26llimn8yybwldlmv24iawvawhhb-glow-3.0.0"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/6w7gn0zry4frcx26k4204gmfniglqngd-glow-3.0.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/6w7gn0zry4frcx26k4204gmfniglqngd-glow-3.0.0"
-        }
-      }
-    },
     "jq@1.8.1": {
       "last_modified": "2026-07-08T01:50:52Z",
       "resolved": "github:NixOS/nixpkgs/05988b07fb05cbcb50be6bce197b4b5f75b5e61b#jq",
