@@ -9,7 +9,8 @@
     "git@2.53.0",
     "jq@1.8.1",
     "yq-go@4.53.2",
-    "nodejs@22"
+    "nodejs@22",
+    "glow@3.0.0"
   ],
   "shell": {
     "init_hook": [
